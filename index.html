@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>Tarea 4 | Visual Analytics</title>
+  <title>Assignment 4 | Visual Analytics</title>
 
   <!-- Materialize CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -21,7 +21,7 @@
       <div class="col s12">
         <div class="card">
           <div class="card-image">
-            <img src="assets/img/rain.jpg">
+            <img src="assets/img/city.jpg">
             <span class="card-title">Title</span>
           </div>
           <div class="card-content">
@@ -35,8 +35,8 @@
       <div class="col s12">
         <ul class="collapsible">
           <li>
-            <div class="collapsible-header yellow lighten-4"><i class="material-icons">filter_list</i>Click here to filter by municipality</div>
-            <div class="collapsible-body"><div id="municipalities"></div></div>
+            <div class="collapsible-header yellow lighten-4"><i class="material-icons">filter_list</i>Click here to filter by department.</div>
+            <div class="collapsible-body"><div id="departments"></div></div>
           </li>
         </ul>
       </div>
@@ -46,9 +46,8 @@
       <div class="col s12">
         <div class="card">
           <div class="card-content">
-            <span class="card-title"><span class="badge"><i class="material-icons left">insert_chart</i></span> Rainfall by Month in Cundinamarca - Colombia</span>
+            <span class="card-title"><span class="badge"><i class="material-icons left">insert_chart</i></span> Motorcycles thievery in Colombia</span>
             <div id="chart1" class="progress"><div class="indeterminate"></div></div>
-            <p>Global mean temperature from january 1880 to august 2018.</p>
           </div>
         </div>
       </div>
@@ -67,14 +66,15 @@
           </div>
           <div class="card-content">
             <p>Dataset Type: Temporal</p>
-            <p>Items: Rainfall measurements</p>
+            <p>Items: Motorcycle thievery report</p>
             <p>Attributes: 
               <ol>
-                <li>Date (Temporal)</li>
-                <li>Rainfall (Ordered, Quantitative, Sequential)</li>
-                <li>Municipality (Categorical)</li>                
+                <li>Date & time (Temporal)</li>
+                <li>Department (Categorical)</li>
+                <li>Count* (Ordered, Quantitative)</li>
               </ol>
             </p>
+            <p><small>*Derived</small></p>
           </div>
         </div>
       </div>
@@ -85,10 +85,7 @@
           </div>
           <div class="card-content">
             <ul class="browser-default">
-              <li>Identify patterns in rainfall over time. <b>(Identify - Trends)</b></li>
-              <li>Identify if the month when it rains the most is constant over time. <b>(Identify - Outliers)</b></li>
-              <li>Summarize the rainfall meassurements over time. <b>(Summarize - Features)</b></li>
-              <li>Locate the rainfall meassurement for a given year and month. <b>(Locate - Features)</b></li>
+              <li>Lorem ipsum. <b>(x - y)</b></li>
             </ul>
           </div>
         </div>
@@ -103,14 +100,14 @@
               <ul>
                 <li><ul>
                   <li>[1] Encode: Arrange, Order.</li>
-                  <li>[2] Map: Color (saturation).</li>
-                  <li>[3] Reduce: Filter.</li>
+                  <li>[3] Map: Color (saturation) .</li>
+                  <li>[2] Reduce: Filter.</li>
                 </ul></li>
                 <li>Mark: Area.</li>
                 <li>Channels:
                   <ul class="browser-default">
                     <li>[1] Position.</li>
-                    <li>[2] Color (saturation).</li>
+                    <li>[3] Color (saturation).</li>
                   </ul></li>
               </ul>
             </p>
@@ -162,7 +159,7 @@
       var instances = M.Collapsible.init(elems);
     });
 
-    d3.select("select#municipality")
+    d3.select("select#department")
       .on('change',function(){
         console.log(d3.select(this).property('value'));
       });
