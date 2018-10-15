@@ -161,6 +161,9 @@
 
     //D3
     var rawData;
+    var width = d3.select("#chart1").node().getBoundingClientRect().width-80;
+    var cellSize = width/52;
+    var height = cellSize * 9;
     var countDay = d => (d.getDay() + 6) % 7;
     function pathMonth(t) {
       const n = 7;
@@ -177,6 +180,7 @@
 
     d3.csv('assets/data/test.csv').then(
       function(data) {
+        data.sort( (a,b) => d3.ascending(a.date, b.date));
         rawData = data;
         drawCalendar();
       }
@@ -188,9 +192,9 @@
     }
 
     function drawCalendar(){
-      var width = d3.select("#chart1").node().getBoundingClientRect().width-80;
-      var cellSize = width/52;
-      var height = cellSize * 9;
+      width = d3.select("#chart1").node().getBoundingClientRect().width-80;
+      cellSize = width/52;
+      height = cellSize * 9;
       d3.select("#chart1").html("");
       var color = d3.scaleSequential(d3.interpolateBlues).domain([0, d3.max(rawData, d=> +d.value)]);
 
@@ -240,7 +244,7 @@
 
         const month = year.append("g")
           .selectAll("g")
-          .data(d => d3.timeMonths(d3.timeMonth(d.values[0].date), d.values[d.values.length - 1].date))
+          .data(d => d3.timeMonths(d3.timeMonth(new Date(d.values[0].date)), new Date(d.values[d.values.length - 1].date)))
           .enter().append("g");
 
         month.filter((d, i) => i).append("path")
