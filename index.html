@@ -33,12 +33,12 @@
 
     <div class="row">
       <div class="col s12">
-        <ul class="collapsible">
-          <li>
-            <div class="collapsible-header yellow lighten-4"><i class="material-icons">filter_list</i>Click here to filter by department.</div>
-            <div class="collapsible-body"><form id="departments"></form></div>
-          </li>
-        </ul>
+        <div class="card yellow lighten-4">
+          <div class="card-content">
+            <p><span class="badge"><i class="material-icons left">filter_list</i></span>Hover your mouse over the squares to get more information and use the following select to filter the results by department <div class="input-field col s12"><select id="departments"><option value="All" selected>All</option></select><label>Department</label></div></p>
+            <div class="clearfix"></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -155,12 +155,6 @@
     </div>
   </footer>
   <script type="text/javascript">
-    //Materialize Modals
-    document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('.collapsible');
-      var instances = M.Collapsible.init(elems);
-    });
-
     //D3
     var rawData;
     var width = d3.select("#chart1").node().getBoundingClientRect().width-80;
@@ -188,14 +182,13 @@
         var departments = data.columns.splice(1,32);
         departments.forEach(function(d,i){
           d3.select('#departments')
-            .append("div")
-            .attr("class","col s2")
-            .html('<label><input type="checkbox" class="department-checkbox" id="'+encodeURI(d.toLowerCase())+'" checked><span>'+d[0].toUpperCase()+d.slice(1).toLowerCase()+'</span></label>');
+            .append("option")
+            .attr("value", d)
+            .text(d[0].toUpperCase()+d.slice(1).toLowerCase());
         });
-        d3.select('#departments')
-            .append("div")
-            .attr("class","clearfix");
-        drawCalendar("All");
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems);
+        drawCalendar();
         d3.select("#chart1").attr("class","");
       }
     );
@@ -205,7 +198,9 @@
       return d.getFullYear();
     }
 
-    function drawCalendar(filter){
+    function drawCalendar(){
+      var filter = d3.select("#departments").property("value");
+      
       width = d3.select("#chart1").node().getBoundingClientRect().width-80;
       cellSize = width/52;
       height = cellSize * 9;
@@ -273,10 +268,9 @@
             .text(formatMonth);
     }
 
-    d3.select("input")
-      .property("checked", true)
+    d3.select("#departments")
       .on("change", function(){
-        console.log("OMG");
+        drawCalendar();
       });
 
     window.onresize = function(event) {
