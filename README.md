@@ -71,7 +71,7 @@ Attributes:
 # Related Content
 * [Visualization](https://cubosensei.github.io/va-tarea4)
 * [Slides](https://docs.google.com/presentation/d/1XOF9YEw4gRdQSf_bXtG3oWZiL31VStLo9VDSLJeosgU/edit?usp=sharing)
-* [YouTube Video]()
+* [YouTube Video](https://youtu.be/X95q9veBt9E)
 
 
 # Credits
