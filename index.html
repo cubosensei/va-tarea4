@@ -177,14 +177,14 @@
     d3.csv('assets/data/Hurto_de_motocicletas_2010-2017.csv').then(
       function(data) {
         data.sort( (a,b) => d3.ascending(new Date(a.fecha), new Date(b.fecha)));
-        rawData = data;
+        rawData = data;console.log(data);
 
         var departments = data.columns.splice(1,32);
         departments.forEach(function(d,i){
           d3.select('#departments')
             .append("option")
             .attr("value", d)
-            .text(d[0].toUpperCase()+d.slice(1).toLowerCase());
+            .text(d);
         });
         var elems = document.querySelectorAll('select');
         var instances = M.FormSelect.init(elems);
@@ -209,8 +209,7 @@
 
       var years = d3.nest()
         .key(d => formatYear(d.fecha))
-        .entries(rawData)
-        .reverse();
+        .entries(rawData);
       
       var svg = d3.select("#chart1")
         .append("svg")
