@@ -85,7 +85,9 @@
           </div>
           <div class="card-content">
             <ul class="browser-default">
-              <li>Lorem ipsum. <b>(x - y)</b></li>
+              <li>Overview the behaviour of motorcycles thievery reports over time. <b>(Summarize - Trends)</b></li>
+              <li>Identify possible peaks in specific days. <b>(Identify - Outliers)</b></li>
+              <li>Compare the overall behaviour of motorcycles thievery reports between years. <b>(Compare - Features)</b></li>
             </ul>
           </div>
         </div>
@@ -123,7 +125,14 @@
         <div class="card">
           <div class="card-content">
             <span class="card-title">Insights</span>
-            <p>Lorem ipsum</p>
+            <ul>
+              <li>During easter week, on wednesday, thursday and friday motorcycles thievery reduces.</li>
+              <li>In general, motorcycles thievery reduces on sundays.</li>
+              <li>There are usually more reports in january 1st than december 31th.</li>
+              <li>2016 was the year in which the most robberies were reported.</li>
+              <li>One month after the rise of IVA to 19% in 2017, motorcycles thievery reports reduced.</li>
+              <li>Motorcycles thievery reports increased after the announce of SOAT prices in january 2018.</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -171,7 +180,7 @@
     }
     var format = d3.format("+.2%");
     var formatDate = d3.timeFormat("%x");
-    var formatDay = d => "SMTWTFS"[d.getDay()];
+    var formatDay = d => ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][d.getDay()];
     var formatMonth = d3.timeFormat("%b");
 
     d3.csv('assets/data/Hurto_de_motocicletas_2010-2017.csv').then(
